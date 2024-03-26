@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+ <title>Student to Uppercase</title> 
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.0/angular.min.js"></script> 
+   <script >var app = angular.module('studentApp', []);
+
+    app.controller('studentController', function($scope) {
+      $scope.students = [
+        {name: 'John Doe', age: 20, major: 'Computer Science'},
+        {name: 'Jane Smith', age: 22, major: 'Mathematics'},
+        {name: 'Emily Johnson', age: 21, major: 'Physics'}
+        // Add more students as needed
+      ];
+    });
+    
+    app.filter('uppercaseStudent', function() {
+      return function(student) {
+        if (student) {
+          return student.name.toUpperCase() + ', Age: ' + student.age + ', Major: ' + student.major;
+        } else {
+          return '';
+        }
+      };
+    });
+    </script>
+    </head>
+<body ng-app="studentApp" ng-controller="studentController">
+  <h2>Student Details</h2>
+  <ul>
+    <li ng-repeat="student in students">
+      {{ student | uppercaseStudent }}
+    </li>
+  </ul>
+</body>
+</html>
